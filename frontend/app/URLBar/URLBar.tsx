@@ -62,7 +62,7 @@ export function URLBar({value, onChange, onSubmit, setIsValidUrl, canSubmit}: UR
             />
         <Button
         variant="outline"
-        className="rounded-2xl h-12 text-base bg-blue-600! hover:bg-blue-700! text-white"
+        className="rounded-2xl h-12 text-base bg-blue-600! hover:bg-blue-700! text-white cursor-pointer"
         // onClick={isValid ? onSubmit : () => {}}
         onClick={canSubmit ? onSubmit : undefined}
         // disabled={!isValid}

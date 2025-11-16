@@ -64,7 +64,7 @@ export function PDFUpload({ onFileSelect }: PDFUploadProps) {
             className="hidden"/>
             <Button 
             onClick={handleButtonClick}
-            className="rounded-2xl h-12 text-base"
+            className="rounded-2xl h-12 text-base cursor-pointer"
             variant="outline" >
                 {file ? file.name : "Upload Resume"}
                 <ArrowUpIcon />
