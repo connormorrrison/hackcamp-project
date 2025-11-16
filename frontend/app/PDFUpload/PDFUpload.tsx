@@ -54,8 +54,9 @@ export function PDFUpload() {
             className="hidden"/>
 
             <Button 
-            onClick={handleButtonClick}>
-                Upload Resume
+            onClick={handleButtonClick}
+            variant={error ? "destructive" : "default"}>
+                {file ? file.name : "Upload Resume"}
             </Button>
 
         </div>

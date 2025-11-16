@@ -1,6 +1,6 @@
 "use client"
 
-import "./global.css";
+import "./globals.css";
 import { URLBar } from "./URLBar/URLBar";
 import { PDFUpload } from "./PDFUpload/PDFUpload";
 
@@ -52,6 +52,8 @@ export default function Home() {
           )}
         </div>
       </div>
+      <URLBar />
+      <PDFUpload />
     </div>
   );
 }
