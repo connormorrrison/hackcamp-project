@@ -8,14 +8,16 @@ interface URLBarProps {
     value: string;
     onChange: (value: string) => void;
     onSubmit: () => void;
+    setIsValidUrl: (valid: boolean) => void;
+    canSubmit: boolean;
 }
 
-export function URLBar({value, onChange, onSubmit}: URLBarProps) {
-    const [url, setUrl] = useState("");
-    const [isValid, setIsValid] = useState(true);
+export function URLBar({value, onChange, onSubmit, setIsValidUrl, canSubmit}: URLBarProps) {
+    // const [url, setUrl] = useState("");
+    const [isValid, setIsValid] = useState(false);
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter" && isValid) {
+        if (e.key === "Enter" && canSubmit) {
             onSubmit();
         }
     }   
@@ -29,12 +31,22 @@ export function URLBar({value, onChange, onSubmit}: URLBarProps) {
             return false;
         }
     }
-
+    
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        const value = e.target.value;
-        setUrl(value);
-        setIsValid(validateURL(value) || value === "");
-        onChange(e.target.value)
+        // const value = e.target.value;
+        // const isValidUrl =  validateURL(value)
+        // // setUrl(value);
+        // // setIsValid(validateURL(value) || value === "");
+        // setIsValidUrl(isValidUrl);
+        // // onChange(e.target.value)
+        // onChange(value);
+
+        const val = e.target.value;
+        const valid = validateURL(val);
+
+        setIsValid(valid || val === "");
+        setIsValidUrl(valid);
+        onChange(val);
     }
     
     return (
@@ -42,7 +54,7 @@ export function URLBar({value, onChange, onSubmit}: URLBarProps) {
             <Input 
             type="url"
             placeholder="Enter Job URL"
-            value={url}
+            value={value}
             onChange={handleChange}
             className={`flex-1 rounded-2xl h-12 text-base! ${!isValid ? "!border-red-500" : "border-gray-300"}`}
             onKeyDown={handleKeyDown}
@@ -51,8 +63,10 @@ export function URLBar({value, onChange, onSubmit}: URLBarProps) {
         <Button
         variant="outline"
         className="rounded-2xl h-12 text-base bg-blue-600! hover:bg-blue-700! text-white"
-        onClick={isValid ? onSubmit : () => {}}
-        disabled={!isValid}
+        // onClick={isValid ? onSubmit : () => {}}
+        onClick={canSubmit ? onSubmit : undefined}
+        // disabled={!isValid}
+        disabled={!canSubmit}
         >
             Generate
         </Button>

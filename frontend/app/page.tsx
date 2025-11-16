@@ -14,6 +14,11 @@ export default function Home() {
   const [documentsReady, setDocumentsReady] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
+  const [isValidUrl, setIsValidUrl] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+
+  const canSubmit = isValidUrl && file != null;
+
   const handleSubmit = () => {
     if (inputValue.trim()) {
       setIsGenerating(true);
@@ -29,7 +34,8 @@ export default function Home() {
   return (
     <div className="flex min-h-screen relative">
       <div className="absolute top-8 right-8 z-10">
-        <PDFUpload />
+        <PDFUpload 
+        onFileSelect={setFile}/>
       </div>
       <div className="flex-1 flex flex-col justify-center items-center p-10 overflow-hidden">
         <div className="flex flex-col items-center justify-center w-full max-w-2xl transition-all ease-out duration-300">
@@ -40,7 +46,9 @@ export default function Home() {
           <URLBar 
           value={inputValue}
           onChange={setInputValue}
-          onSubmit={handleSubmit} />
+          onSubmit={handleSubmit}
+          setIsValidUrl={setIsValidUrl}
+          canSubmit={canSubmit} />
         
           <ShimmeringText isGenerating={isGenerating} documentsReady={documentsReady} />
           {isGenerating && (
@@ -53,4 +61,6 @@ export default function Home() {
       </div>
     </div>
   );
+  console.log({ isValidUrl, file, canSubmit });
 }
+

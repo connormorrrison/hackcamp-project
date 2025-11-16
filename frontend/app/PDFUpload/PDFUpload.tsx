@@ -4,7 +4,11 @@ import { Button } from "@/components/ui/button";
 import { useRef, useState } from "react";
 import { ArrowUpIcon } from "lucide-react"
 
-export function PDFUpload() {
+interface PDFUploadProps {
+    onFileSelect: (file: File | null) => void;
+}
+
+export function PDFUpload({ onFileSelect }: PDFUploadProps) {
     const [file, setFile] = useState<File | null>(null);
     const [error, setError] = useState("");
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -16,6 +20,7 @@ export function PDFUpload() {
         if (!selectedFile) {
             setFile(null);
             setError("");
+            onFileSelect(null);
             return;
     
         }
@@ -24,6 +29,7 @@ export function PDFUpload() {
         if (selectedFile.type !== "application/pdf") {
             setFile(null);
             setError("Upload a PDF file");
+            onFileSelect(null);
             return;
         }
 
@@ -32,12 +38,15 @@ export function PDFUpload() {
         if (selectedFile.size > maxSize) {
             setFile(null);
             setError("File size must be less than 10MB");
+            onFileSelect(null);
             return;
+            
         }
 
         // if all things check out, save the file
         setFile(selectedFile);
         setError('');
+        onFileSelect(selectedFile);
 
     }
 
