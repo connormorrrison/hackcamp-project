@@ -61,6 +61,5 @@ export default function Home() {
       </div>
     </div>
   );
-  console.log({ isValidUrl, file, canSubmit });
 }
 
