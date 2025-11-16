@@ -2,75 +2,43 @@
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 
 interface URLBarProps {
     value: string;
     onChange: (value: string) => void;
     onSubmit: () => void;
-    setIsValidUrl: (valid: boolean) => void;
     canSubmit: boolean;
 }
 
-export function URLBar({value, onChange, onSubmit, setIsValidUrl, canSubmit}: URLBarProps) {
-    // const [url, setUrl] = useState("");
-    const [isValid, setIsValid] = useState(false);
-
+export function URLBar({value, onChange, onSubmit, canSubmit}: URLBarProps) {
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter" && canSubmit) {
             onSubmit();
         }
-    }   
-
-    // checks to see if the input is a url //
-    function validateURL(value: string) {
-        try {
-            new URL(value);
-            return true;
-        } catch {
-            return false;
-        }
     }
-    
+
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        // const value = e.target.value;
-        // const isValidUrl =  validateURL(value)
-        // // setUrl(value);
-        // // setIsValid(validateURL(value) || value === "");
-        // setIsValidUrl(isValidUrl);
-        // // onChange(e.target.value)
-        // onChange(value);
-
-        const val = e.target.value;
-        const valid = validateURL(val);
-
-        setIsValid(valid || val === "");
-        setIsValidUrl(valid);
-        onChange(val);
+        onChange(e.target.value);
     }
-    
-    return (
-        <div className="flex gap-4 w-full max=w=2xl">
-            <Input 
-            type="url"
-            placeholder="Enter Job URL"
-            value={value}
-            onChange={handleChange}
-            className={`flex-1 rounded-2xl h-12 text-base! ${!isValid ? "!border-red-500" : "border-gray-300"}`}
-            onKeyDown={handleKeyDown}
 
+    return (
+        <div className="flex gap-4 w-full max-w-2xl">
+            <Input
+                type="text"
+                placeholder="Paste job description here..."
+                value={value}
+                onChange={handleChange}
+                className="flex-1 rounded-2xl h-12 text-base!"
+                onKeyDown={handleKeyDown}
             />
-        <Button
-        variant="outline"
-        className="rounded-2xl h-12 text-base bg-blue-600! hover:bg-blue-700! text-white"
-        // onClick={isValid ? onSubmit : () => {}}
-        onClick={canSubmit ? onSubmit : undefined}
-        // disabled={!isValid}
-        disabled={!canSubmit}
-        >
-            Generate
-        </Button>
+            <Button
+                variant="outline"
+                className="rounded-2xl h-12 text-base bg-blue-600! hover:bg-blue-700! text-white"
+                onClick={canSubmit ? onSubmit : undefined}
+                disabled={!canSubmit}
+            >
+                Generate
+            </Button>
         </div>
     )
-
 };

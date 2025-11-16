@@ -1,0 +1,50 @@
+\DocumentMetadata{}
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{parskip}
+
+% Fix for TeX Live 2024+ tagging system in tabular environments
+\makeatletter
+\@ifundefined{tagpdfparaOff}{}{
+  \AddToHook{env/tabular*/begin}{\tagpdfparaOff}
+  \AddToHook{env/tabular*/end}{\tagpdfparaOn}
+  \AddToHook{env/tabular/begin}{\tagpdfparaOff}
+  \AddToHook{env/tabular/end}{\tagpdfparaOn}
+}
+\makeatother
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{flushleft}
+Jacob Rosario\\
+xxx-xxx-xxxx\\
+jacobrosario@gmail.com
+\end{flushleft}
+
+\vspace{0.5cm}
+
+\today
+
+\vspace{0.5cm}
+
+Hiring Manager\\
+LayerZero
+
+\vspace{0.5cm}
+
+Dear Hiring Manager,
+
+I am writing to express my interest in the Backend Engineer position at LayerZero. With my experience in customer service, team collaboration, and a strong understanding of technology, I am confident that I can contribute effectively to your team.
+
+During my time as a Barista at Starbucks and a Sales Associate at Shoe Palace, I honed my customer service skills and learned to work efficiently in fast-paced environments. I handled hundreds of transactions daily, collaborated with diverse teams, and used advanced point-of-sale systems and mobile applications to streamline processes. These experiences have equipped me with the ability to quickly adapt to new technologies and work effectively in dynamic settings.
+
+In addition to my customer service experience, I have a strong technical background. I am proficient in several programming languages, including HTML, CSS, JavaScript, and Python. I am comfortable navigating complex technical stacks and am eager to deepen my expertise in innovative technologies.
+
+I am excited about the opportunity to work at LayerZero and contribute to revolutionizing blockchain interoperability. I am eager to bring my strong problem-solving skills, attention to detail, and passion for technology to your team. I look forward to the possibility of discussing this opportunity further.
+
+Sincerely,
+
+Jacob Rosario
+
+\end{document}
