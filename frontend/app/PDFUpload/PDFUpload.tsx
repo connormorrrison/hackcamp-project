@@ -53,7 +53,8 @@ export function PDFUpload() {
             onChange={handleFileChange}
             className="hidden"/>
 
-            <Button>
+            <Button 
+            onClick={handleButtonClick}>
                 Upload Resume
             </Button>
 
