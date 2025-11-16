@@ -15,7 +15,7 @@ export function URLBar({value, onChange, onSubmit}: URLBarProps) {
     const [isValid, setIsValid] = useState(true);
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && isValid) {
             onSubmit();
         }
     }   
@@ -51,9 +51,9 @@ export function URLBar({value, onChange, onSubmit}: URLBarProps) {
         <Button
         variant="outline"
         className="rounded-2xl h-12 text-base bg-blue-600! hover:bg-blue-700! text-white"
-        onClick={onSubmit}
+        onClick={isValid ? onSubmit : () => {}}
         >
-            Generate
+            Submit
         </Button>
         </div>
     )
