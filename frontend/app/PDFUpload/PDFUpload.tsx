@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useRef, useState } from "react";
+import { ArrowUpIcon } from "lucide-react"
 
 export function PDFUpload() {
     const [file, setFile] = useState<File | null>(null);
@@ -52,11 +53,12 @@ export function PDFUpload() {
             accept=".pdf, application/pdf"
             onChange={handleFileChange}
             className="hidden"/>
-
             <Button 
             onClick={handleButtonClick}
-            variant={error ? "destructive" : "default"}>
+            className="rounded-2xl h-12 text-base"
+            variant="outline" >
                 {file ? file.name : "Upload Resume"}
+                <ArrowUpIcon />
             </Button>
         </div>
     )

@@ -53,7 +53,7 @@ export function URLBar({value, onChange, onSubmit}: URLBarProps) {
         className="rounded-2xl h-12 text-base bg-blue-600! hover:bg-blue-700! text-white"
         onClick={isValid ? onSubmit : () => {}}
         >
-            Submit
+            Generate
         </Button>
         </div>
     )

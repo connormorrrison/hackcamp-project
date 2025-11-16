@@ -7,6 +7,7 @@ import { InputBar } from "@/components/InputBar";
 import { ShimmeringText } from "@/components/ShimmeringText";
 import { DownloadButton } from "@/components/DownloadButton";
 import { Button1 } from "@/components/Button-1";
+import { PDFUpload } from "./PDFUpload/PDFUpload";
 
 export default function Home() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -28,7 +29,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen relative">
       <div className="absolute top-8 right-8 z-10">
-        <Button1 />
+        <PDFUpload />
       </div>
       <div className="flex-1 flex flex-col justify-center items-center p-10 overflow-hidden">
         <div className="flex flex-col items-center justify-center w-full max-w-2xl transition-all ease-out duration-300">
