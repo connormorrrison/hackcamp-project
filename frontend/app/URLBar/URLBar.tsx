@@ -1,12 +1,24 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export function URLBar() {
+interface URLBarProps {
+    value: string;
+    onChange: (value: string) => void;
+    onSubmit: () => void;
+}
+
+export function URLBar({value, onChange, onSubmit}: URLBarProps) {
     const [url, setUrl] = useState("");
     const [isValid, setIsValid] = useState(true);
-    
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            onSubmit();
+        }
+    }   
 
     // checks to see if the input is a url //
     function validateURL(value: string) {
@@ -22,17 +34,28 @@ export function URLBar() {
         const value = e.target.value;
         setUrl(value);
         setIsValid(validateURL(value) || value === "");
+        onChange(e.target.value)
     }
     
     return (
-        <Input 
-        type="url"
-        placeholder="Enter Job URL"
-        value={url}
-        onChange={handleChange}
-        className={ !isValid ? "!border-red-500" : "border-gray-300"}
+        <div className="flex gap-4 w-full max=w=2xl">
+            <Input 
+            type="url"
+            placeholder="Enter Job URL"
+            value={url}
+            onChange={handleChange}
+            className={`flex-1 rounded-2xl h-12 text-base! ${!isValid ? "!border-red-500" : "border-gray-300"}`}
+            onKeyDown={handleKeyDown}
 
-        />
+            />
+        <Button
+        variant="outline"
+        className="rounded-2xl h-12 text-base bg-blue-600! hover:bg-blue-700! text-white"
+        onClick={onSubmit}
+        >
+            Generate
+        </Button>
+        </div>
     )
 
 };

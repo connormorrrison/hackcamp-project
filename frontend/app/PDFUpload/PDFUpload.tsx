@@ -58,7 +58,6 @@ export function PDFUpload() {
             variant={error ? "destructive" : "default"}>
                 {file ? file.name : "Upload Resume"}
             </Button>
-
         </div>
     )
 }

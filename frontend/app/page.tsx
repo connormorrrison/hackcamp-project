@@ -1,9 +1,6 @@
 "use client"
 
-import "./globals.css";
-import { URLBar } from "./URLBar/URLBar";
-import { PDFUpload } from "./PDFUpload/PDFUpload";
-
+import {URLBar} from "./URLBar/URLBar";
 import { useState } from "react";
 import { Sidebar } from "@/components/Sidebar";
 import { InputBar } from "@/components/InputBar";
@@ -38,11 +35,12 @@ export default function Home() {
           {!isGenerating && (
             <p className="text-2xl mb-10 text-foreground">Enter a job URL to get started</p>
           )}
-          <InputBar
-            value={inputValue}
-            onChange={setInputValue}
-            onSubmit={handleSubmit}
-          />
+
+          <URLBar 
+          value={inputValue}
+          onChange={setInputValue}
+          onSubmit={handleSubmit} />
+        
           <ShimmeringText isGenerating={isGenerating} documentsReady={documentsReady} />
           {isGenerating && (
             <div className="flex gap-4 mt-8">
@@ -52,8 +50,6 @@ export default function Home() {
           )}
         </div>
       </div>
-      <URLBar />
-      <PDFUpload />
     </div>
   );
 }
